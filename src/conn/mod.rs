@@ -1531,7 +1531,7 @@ impl Conn {
 
     fn send_local_infile(&mut self, file_name: &[u8]) -> MyResult<Option<OkPacket>> {
         {
-            let chunk = vec![0u8; self.max_allowed_packet].into_boxed_slice();
+            let chunk = vec![0u8; self.max_allowed_packet/2].into_boxed_slice();
             let maybe_handler = self.local_infile_handler.clone().or_else(|| {
                 self.opts.get_local_infile_handler().clone()
             });
